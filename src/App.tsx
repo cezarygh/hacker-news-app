@@ -4,7 +4,7 @@ import { useStories } from "./hooks/useStories";
 import Button from "./components/Button";
 
 function App() {
-  const [amount, setAmount] = useState(10);
+  const [amount, _setAmount] = useState(10);
   const { stories, isFetching } = useStories(amount);
   const [progress, setProgress] = useState(1);
 
