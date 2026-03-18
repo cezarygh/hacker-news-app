@@ -19,7 +19,8 @@ const StoryItem = ({ story }: StoryItemProps) => {
         <span>by {story.by}</span>
         <span>·</span>
         <span className="truncate max-w-[200px]">
-          {new URL(story.url).hostname}
+          {/* {new URL(story.url).hostname} */}
+          {story.url}
         </span>
       </div>
     </a>
