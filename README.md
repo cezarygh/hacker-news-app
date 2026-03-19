@@ -1,73 +1,24 @@
-# React + TypeScript + Vite
+FRONTEND TECHNICAL ASSIGNMENT
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hacker News App + Button Component 
 
-Currently, two official plugins are available:
+Approach
+This app uses hooks to fetch data that calls api
+Has a reusble compontent Button.tsx
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Application has three main layers
+api/hackerNewsApi.ts -> hooks/useStories.ts -> components/StoryList.tsx 
 
-## React Compiler
+#hackerNewsApi.ts
+Inside hackerNewsApi.ts there is a fetchTopStoryIds that gets the IDs of the top 500 Hacker news, slices it to (amount) that is provided through a prop, and stores in (reducedIds)
+I also have fetchStory that gets full details of a story by its ID (Which i provide with a prop)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+#useStories.ts
+Inside hooks folder there is a custom hook useStories.ts that gets the top amount stories from Hacker News and loops through each ID, then fetch full story details for that ID and pushes to stories array and saves it.
 
-## Expanding the ESLint configuration
+#StoryList.tsx
+StoryList.tsx takes array of stories and renders it using storyItem.tsx compontent
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Future work and trade off
+I chose only to fetch 10 and not 500 news. It could be nice with a button that loads more news.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
