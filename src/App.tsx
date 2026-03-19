@@ -2,7 +2,7 @@ import { useState } from "react";
 import StoryList from "../src/components/StoryList";
 import { useStories } from "./hooks/useStories";
 import Button from "./components/Button";
-import UpdateBtn from "./components/updateBtn";
+import UpdateBtn from "./components/UpdateBtn";
 
 function App() {
   const [refresh, setRefresh] = useState(0);
