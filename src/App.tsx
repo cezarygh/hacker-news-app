@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import StoryList from "../src/components/StoryList";
 import { useStories } from "./hooks/useStories";
 import Button from "./components/Button";
@@ -6,7 +6,7 @@ import UpdateBtn from "./components/updateBtn";
 
 function App() {
   const [refresh, setRefresh] = useState(0);
-  const [amount, setAmount] = useState(10);
+  const [amount, _setAmount] = useState(10);
   const { stories, isFetching, progress } = useStories(amount, refresh);
 
   return (
