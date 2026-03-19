@@ -29,7 +29,7 @@ const Button = ({
     shadow === "exciting"
       ? "depth-shift"
       : shadow === "boring"
-        ? "shadow-2xl"
+        ? "shadow-xl shadow-black/25"
         : "";
 
   const clickEffect = clickable

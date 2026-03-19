@@ -44,7 +44,7 @@ function App() {
           </div>
 
           <div className="flex-1 p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-white/5">
-            <div className="h-full content-center rounded-2xl bg-white/5 backdrop-blur-md flex flex-wrap items-center justify-center gap-3 p-6">
+            <div className="h-full content-center rounded-2xl bg-white/5 backdrop-blur-md flex flex-wrap items-center justify-center gap-5 p-6">
               <Button label="Clickable" clickable />
               <Button variant="disabled" label="Disabled" />
               <Button label="Boring shadow" shadow="boring" />
