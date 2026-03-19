@@ -9,6 +9,7 @@ export const useStories = (amount: number, refresh: number = 0) => {
 
   useEffect(() => {
     const fetchTopStories = async () => {
+      setStories([]);
       setIsFetching(true);
       setProgress(1);
 

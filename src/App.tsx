@@ -2,7 +2,6 @@ import { useState } from "react";
 import StoryList from "../src/components/StoryList";
 import { useStories } from "./hooks/useStories";
 import Button from "./components/Button";
-import UpdateBtn from "./components/UpdateBtn";
 
 function App() {
   const [refresh, setRefresh] = useState(0);
@@ -33,9 +32,6 @@ function App() {
                     Fetching...
                   </span>
                 )}
-                {!isFetching && (
-                  <UpdateBtn onClick={() => setRefresh((r) => r + 1)} />
-                )}
               </div>
               <div className="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                 <StoryList stories={stories} />
@@ -50,8 +46,10 @@ function App() {
               <Button label="Boring shadow" shadow="boring" />
               <Button label="Exciting shadow!" shadow="exciting" />
               <Button
+                onClick={() => setRefresh((r) => r + 1)}
+                clickable
                 variant="secondary"
-                label={`Loading... ${progress}%`}
+                label={isFetching ? `Loading... ${progress}%` : "Fetch data"}
                 progress={progress}
               />
             </div>

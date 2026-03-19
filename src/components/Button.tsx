@@ -6,6 +6,7 @@ type ButtonProps = {
   label: string;
   clickable?: boolean;
   shadow?: ShadowVariant;
+  onClick?: () => void;
   progress?: number;
 };
 
@@ -14,6 +15,7 @@ const Button = ({
   label,
   clickable = false,
   shadow = "none",
+  onClick,
   progress = 0,
 }: ButtonProps) => {
   const buttonStyles = {
@@ -29,7 +31,7 @@ const Button = ({
     shadow === "exciting"
       ? "depth-shift"
       : shadow === "boring"
-        ? "shadow-xl shadow-black/25"
+        ? "shadow-xl shadow-black/16"
         : "";
 
   const clickEffect = clickable
@@ -52,6 +54,7 @@ const Button = ({
       `}</style>
 
       <button
+        onClick={onClick}
         className={`
           relative overflow-hidden
           px-4 py-2
