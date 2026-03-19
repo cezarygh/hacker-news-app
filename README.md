@@ -5,17 +5,17 @@ A little Hacker News App built with React, TypeScript, and custom hooks.
 ## Architecture
 
 Application has three layers
-`hackerNewsApi.ts → useStories.ts → StoryList.tsx`
+hackerNewsApi.ts → useStories.ts → StoryList.tsx
 
-api/hackerNewsApi.ts
-`fetchTopStoryIds(amount)` — fetches the top 500 story IDs from Hacker News and slices down to the requested amount
-`fetchStory(id)` — fetches full details for a single story by ID
+`api/hackerNewsApi.ts`
+fetchTopStoryIds(amount) — fetches the top 500 story IDs from Hacker News and slices down to the requested amount
+fetchStory(id) — fetches full details for a single story by ID
 
-hooks/useStories.ts
-Custom hook that takes the top `amount` stories from Hacker News and loops through each ID, then fetches the full story details for that ID and pushes to stories array and saves it.
+`hooks/useStories.ts`
+Custom hook that takes the top amount stories from Hacker News and loops through each ID, then fetches the full story details for that ID and pushes to stories array and saves it.
 
-components/StoryList.tsx
-Receives the stories array and renders each one using `StoryItem.tsx`.
+`components/StoryList.tsx`
+Receives the stories array and renders each one using StoryItem.tsx.
 
 ---
 
