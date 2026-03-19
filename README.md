@@ -1,24 +1,32 @@
-FRONTEND TECHNICAL ASSIGNMENT
+# Hacker News App
 
-Hacker News App + Button Component 
+A little Hacker News App built with React, TypeScript, and custom hooks.
 
-Approach
-This app uses hooks to fetch data that calls api
-Has a reusble compontent Button.tsx
+## Architecture
 
-Application has three main layers
-api/hackerNewsApi.ts -> hooks/useStories.ts -> components/StoryList.tsx 
+Application has three layers
+`hackerNewsApi.ts → useStories.ts → StoryList.tsx`
 
-#hackerNewsApi.ts
-Inside hackerNewsApi.ts there is a fetchTopStoryIds that gets the IDs of the top 500 Hacker news, slices it to (amount) that is provided through a prop, and stores in (reducedIds)
-I also have fetchStory that gets full details of a story by its ID (Which i provide with a prop)
+api/hackerNewsApi.ts
+`fetchTopStoryIds(amount)` — fetches the top 500 story IDs from Hacker News and slices down to the requested amount
+`fetchStory(id)` — fetches full details for a single story by ID
 
-#useStories.ts
-Inside hooks folder there is a custom hook useStories.ts that gets the top amount stories from Hacker News and loops through each ID, then fetch full story details for that ID and pushes to stories array and saves it.
+hooks/useStories.ts
+Custom hook that takes the top `amount` stories from Hacker News and loops through each ID, then fetches the full story details for that ID and pushes to stories array and saves it.
 
-#StoryList.tsx
-StoryList.tsx takes array of stories and renders it using storyItem.tsx compontent
+components/StoryList.tsx
+Receives the stories array and renders each one using `StoryItem.tsx`.
 
-Future work and trade off
-I chose only to fetch 10 and not 500 news. It could be nice with a button that loads more news.
+---
 
+## Reusable Button
+
+`Button.tsx` is a single component that handles multiple states via props:
+
+| Prop | Effect |
+|------|--------|
+| `variant` | `primary`, `secondary`, or `disabled` styling |
+| `clickable` | Enables press animation |
+| `shadow` | `boring` (drop shadow) or `exciting` (animated) |
+| `progress` | Renders a fill bar from 0–100% |
+| `onClick` | Click handler |
