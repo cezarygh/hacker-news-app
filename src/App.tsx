@@ -2,19 +2,12 @@ import { useState, useEffect } from "react";
 import StoryList from "../src/components/StoryList";
 import { useStories } from "./hooks/useStories";
 import Button from "./components/Button";
+import UpdateBtn from "./components/updateBtn";
 
 function App() {
-  const [amount, _setAmount] = useState(10);
-  const { stories, isFetching } = useStories(amount);
-  const [progress, setProgress] = useState(1);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => (prev % 99) + 1);
-    }, 150);
-
-    return () => clearInterval(timer);
-  }, []);
+  const [refresh, setRefresh] = useState(0);
+  const [amount, setAmount] = useState(10);
+  const { stories, isFetching, progress } = useStories(amount, refresh);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8">
@@ -40,6 +33,9 @@ function App() {
                     Fetching...
                   </span>
                 )}
+                {!isFetching && (
+                  <UpdateBtn onClick={() => setRefresh((r) => r + 1)} />
+                )}
               </div>
               <div className="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                 <StoryList stories={stories} />
@@ -50,10 +46,14 @@ function App() {
           <div className="flex-1 p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-white/5">
             <div className="h-full content-center rounded-2xl bg-white/5 backdrop-blur-md flex flex-wrap items-center justify-center gap-3 p-6">
               <Button label="Clickable" clickable />
-              <Button label="Disabled" disabled />
+              <Button variant="disabled" label="Disabled" />
               <Button label="Boring shadow" shadow="boring" />
               <Button label="Exciting shadow!" shadow="exciting" />
-              <Button label={`Loading... ${progress}%`} progress={progress} />
+              <Button
+                variant="secondary"
+                label={`Loading... ${progress}%`}
+                progress={progress}
+              />
             </div>
           </div>
         </div>
